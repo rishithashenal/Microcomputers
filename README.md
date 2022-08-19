@@ -1,4 +1,4 @@
-# Microcomputers Lab 4
+# Microcomputers Lab 4 (Group 9)
 
 ## **OBJECTIVE**
 Design a modest water level control system for a water tank using interrupts and other PIC16F877A programming techniques.
