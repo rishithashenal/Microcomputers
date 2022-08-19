@@ -1,5 +1,12 @@
 # Microcomputers Lab 4 (Group 9)
 
+#### GROUP MEMBERS
+```
+K.G.R.S NANAYAKKARA-EN21476730
+W.D.J FERNANDO-EN21485886
+H.K.D DINUJAYA-EN21218712
+```
+
 ## **OBJECTIVE**
 Design a modest water level control system for a water tank using interrupts and other PIC16F877A programming techniques.
 
@@ -130,3 +137,8 @@ void main(void){
   }
 }
 ```
+
+## **CONCLUSION**
+<p align="justify">
+This lab was conducted as group activity, which increased our teamwork skills. While writing the code and designing the circuit, we encountered a number of difficulties. It was a fantastic experience, especially during the hardware demonstration, to discover mistakes and decide how to repair them as a group. We were able to thoroughly comprehend the behavior of the PIC16F877A and other components. Finally, the assignment was finished satisfactorily, and the outcome was as expected.
+</p>
