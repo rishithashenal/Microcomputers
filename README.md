@@ -1,4 +1,3 @@
-# Microcomputers
-Lab 4
+# Microcomputers Lab 4
 
 ## **INTRODUCTION**
