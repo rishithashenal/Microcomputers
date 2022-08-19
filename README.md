@@ -17,19 +17,19 @@ This laboratory is an excellent illustration of how to use an external interrupt
 </p>
 
 ## **APPARATUS**
-3 x IR Obstacle Avoidance Sensor
-Jumper Wires
-2 x 220uF Capacitors 
-16 Pin IC Base
-L293D Motor Driver IC
-40 Pin IC Base
-40x1 Male Header SIL
-2 x 220nf capacitors
-2 x DC Motors(5V)
-1 x 10k Resistor
-Breadboard
-Arduino Board
-20 MHz Crystal Oscillator
+* 3 x IR Obstacle Avoidance Sensor
+* Jumper Wires
+* 2 x 220uF Capacitors 
+* 16 Pin IC Base
+* L293D Motor Driver IC
+* 40 Pin IC Base
+* 40x1 Male Header
+* 2 x 220nf capacitors
+* 2 x DC Motors(5V)
+* 1 x 10k Resistor
+* Breadboard
+* Arduino UNO Board
+* 20 MHz Crystal Oscillator
 
 ## **PCB DESIGN**
 <p align="center">
