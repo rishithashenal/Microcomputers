@@ -9,9 +9,15 @@ This laboratory is an excellent illustration of how to use an external interrupt
 </p>
 
 ## **OPERATIONAL DESIGN AND TRUTH TABLE**
+<p align="justify">
+A water tank with two DC motors is shown below. The first motor pumps water into the tank, while the second motor suctions water out of the tank. The water level in the tank is monitored by three sensors.
+</p>
+
 <p align="center">
 <img width="500" length="500" src="https://user-images.githubusercontent.com/111479144/185607815-fa3dd7d7-dfff-4c6f-961f-f438f919d109.png">
 </p>
+
+The following table explains how the two DC motors operate depending on the state of the switch.
 <p align="center">
 <img width="500" length="500"src="https://user-images.githubusercontent.com/111479144/185607867-f41bef47-e0a9-48b1-aabb-b8b743ac689e.png">    
 </p>
@@ -47,7 +53,7 @@ It is operating as expected on the PCB. The code was written in a way that if th
 </p>
 
 ## **CODE**
-```ruby
+```
 // PIC16F877A Configuration Bit Settings
 
 // 'C' source line config statements
@@ -68,59 +74,59 @@ It is operating as expected on the PCB. The code was written in a way that if th
 
 #include <xc.h>
 
-void __interrupt() isr(void){  //ISR
-    if(INTF==1){     //CHECK IF THE INTERRUPT IS ON
-        INTF = 0;    //CLEAR THE INTERRUPT
+void __interrupt() isr(void){  //Interrupt Service Routine
+    if(INTF==1){               //Check whether the interrupt is ON
+        INTF = 0;              //Clear the interrupt
         
         if(RB2==0 && RB1==0){
-          //MOTOR 1 OFF
-        RC0 = 0;   //IN1 LOW
-        RC1 = 0;   //IN2 LOW
         
-          //MOTOR 2 ON
-        RC3 = 1;   //IN3 HIGH
-        RC5 = 0;   //IN4 LOW
-        __delay_ms(500);   //MOTOR 2 ON FOR 500ms
-        RC3 = 0;   //IN3 LOW
+     //Motor 1 OFF
+        RC0 = 0;              //Make IN1 LOW
+        RC1 = 0;              //Make IN2 LOW
         
-        }
+     //Motor 2 ON
+        RC3 = 1;             //Make IN3 HIGH
+        RC5 = 0;             //Make IN4 LOW
+        __delay_ms(500);     //Motor 2 ON for 500ms
+        RC3 = 0;             //Make IN3 LOW 
     }
+  }
 }
       
 void main(void){
-    TRISB0 = 1;   //SENSOR 3
-    TRISB1 = 1;   //SENSOR 2
-    TRISB2 = 1;   //SENSOR 1
+     TRISB0 = 1;        //Make sensor 3 as input
+     TRISB1 = 1;        //Make sensor 2 as input
+     TRISB2 = 1;        //Make sensor 1 as input
+     
+     TRISC0 = 0;       //Make IN1 as output
+     TRISC1 = 0;       //Make IN2 as output
+     TRISC3 = 0;       //Make IN3 as output
+     TRISC5 = 0;       //Make IN4 as output
+     INTF = 0;         //Clear the interrupt
     
-    TRISC0 = 0;   //IN1
-    TRISC1 = 0;   //IN2
-    TRISC3 = 0;   //IN3
-    TRISC5 = 0;   //IN4
-    INTF = 0;     //CLEAR THE INTERRUPT
-    
-    GIE = 1;    //ENABLE GLOBAL INTERRUPT BIT
-    PEIE = 1;   //ENABLE THE PERIPHERAL INTERRUPT BIT
-    INTE = 1;   //ENABLE RB0 AS EXTERNAL INTERRUPT BIT
+     GIE = 1;          //Enable global interrupt bit
+     PEIE = 1;         //Enable the peripheral interrupt bit
+     INTE = 1;         //Enable RB0 as external interrupt bit
 
-    PORTC = 0X00;  //PORTC LOW
+     PORTC = 0X00;     //Make PORTC LOW
     while(1){
-        RC0 = 0;   //IN1 LOW
-          //MOTOR 2 OFF
-        RC3 = 0;   //IN3 LOW
-        RC5 = 0;   //IN4 LOW
+         RC0 = 0;      //Make IN1 LOW
+     //Motor 2 OFF
+         RC3 = 0;      //Make IN3 LOW
+         RC5 = 0;      //Make IN4 LOW
         
         if(RB2==0 && RB1==1 && RB0==1){
-              //MOTOR 1 ON
-            RC1 = 1;   //IN2 HIGH
+    //Motor 1 ON
+            RC1 = 1;   //Make IN2 HIGH
         }else if(RB2==0 && RB1==0 && RB0==1){
               //MOTOR 1 ON
-            RC1 = 1;   //IN2 HIGH
+            RC1 = 1;   //Make IN2 HIGH
         }else{
-            RC0 = 0;   //IN1 LOW
-            RC0 = 0;   //IN2 LOW
-            RC3 = 0;   //IN3 LOW
-            RC5 = 0;   //IN4 LOW
-        }
+            RC0 = 0;   //Make IN1 LOW
+            RC0 = 0;   //Make IN2 LOW
+            RC3 = 0;   //Make IN3 LOW
+            RC5 = 0;   //Make IN4 LOW
     }
+  }
 }
 ```
